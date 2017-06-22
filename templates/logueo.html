@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	{% load static %}
+	{% load staticfiles %}
+	{% get_static_prefix as STATIC_PREFIX %}
+	
+	{% load crispy_forms_tags %}
+
+	<link rel="icon" href="{% static "images/icono.ico" %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/pagBasic.css' %}">
+	<link rel="stylesheet" href="{% static 'css/logueo.css' %}">
+
+
+	<title> {% block Title|title %} {% endblock %} </title>
+	
+	
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50" >
+
+		<section>
+		
+		{% include "logueo/fondoLogueo.html" %}
+
+		{% block login %}
+		    
+		{% endblock login %}
+		
+		</section>
+		
+			
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}" ></script>
+
+</body>
+</html>

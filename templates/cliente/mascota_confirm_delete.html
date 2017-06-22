@@ -1,0 +1,75 @@
+{% extends "blanco.html" %}
+
+{% load static %}
+
+ {% block Title|title %}
+	Propietario Veterican
+  {% endblock %}
+
+			
+{% block content %}
+	<header>
+		{% include "base/cabecera.html" %}
+	</header>
+
+		<div class="divfuera" align="center">
+
+			<div class="divdentro">
+
+			    <h4> 
+					  <br>
+					    <br>
+					
+
+						<v style="color:red;"> #{{ user.username|title }} </v>
+					   estás seguro que desea <v style="color:yellow;">eliminar</v> a la Mascota de
+					   <v style="color:red;">"{{ object.Propietario.nombre|title }} -{{ object.Propietario.ape_pat|title }}"</v>? 
+					  <br><br>
+					    Se perderá la información de 
+					   <v style="color:red;">{{ object.nombre|title }}({{ object.especie|title }} - {{ object.raza|title }})</v> :(
+					   piensalo bien  ... es tu cliente! 
+						<br>
+
+					    <br>
+
+						
+					</h4>
+
+					<table align="center" width="30%">
+					<tr>
+						<th>
+
+						<form method="post">{% csrf_token %}
+						  
+	            			<button type="submit" value="" class="btn btn-lg black p-x-lg" >Eliminar</button>
+							
+						</form> 
+						</th>
+						<th>
+
+					    <form action="{% url "cliente:ListarMascota" object.Propietario.id %}">
+			            	 
+			            	<button type="submit" class="btn btn-lg red p-x-lg" >Atras</button>
+						
+						</form>
+
+					    </th> 
+					   
+					  </tr>
+					</table>
+					<br>
+			</div>
+						
+		</div>	
+								
+	</div>
+
+	<footer class="text-center">
+
+		{% include "base/footer.html" %}
+			 	
+	</footer>
+
+			   
+
+{% endblock content %}

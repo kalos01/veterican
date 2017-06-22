@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+ {% block Title|title %}
+	Propietario Veterican
+  {% endblock %}
+
+	{% block buscarPropietario %}
+		
+		<div  align="center">
+		<div style="width:40%;" align="center">
+	  			
+	  			<form method="POST" >
+				{% csrf_token %}
+
+				<h3>Nombre:</h3>
+				
+				<div class="form-group">
+	              <input type="text" class="form-control" placeholder="Buscar a un Cliente"  name="q">
+	            </div>
+	            
+	            <button type="submit" class="btn btn-default" >Buscar</button>
+
+			 	<button type="reset" class="btn btn-default" >limpiar</button>
+
+			</form>
+		</div>
+		</div>
+
+	{% endblock buscarPropietario %}
+			
+{% block content %}
+
+		<div class="divfuera" align="center">
+
+			<div class="divdentro">
+
+			{% if object_list %}
+
+						  <h3>  Listado de clientes </h3>
+						  <p><v  style="color:red;">Información relevante de Clientes:</v></p>            
+						  <table class="table table-striped">
+						    <thead>
+						      <tr>
+						        <th>count</th>
+						        <th>nombre</th>
+						        <th>apellidos</th>
+						        <th>DNI</th>
+						        <th>direccion</th>
+						        <th>cell</th>
+						        <th>mascotas</th>
+						        <th>Editar</th>
+						        <th>Eliminar</th>
+						      </tr>
+						    </thead>
+
+						    <tbody>
+							{%  for pr in object_list %}
+
+							<tr>
+							<td valign="bottom"><a href="{% url 'cliente:PropietarioDetalle' pr.id %}" data-toggle="modal" data-target="#myModal">{{forloop.counter}}</a></td>
+							<td>{{pr.nombre}} </td>
+							<td>{{pr.ape_pat}} - {{pr.ape_mat}} </td>
+							<td>{{pr.DNI}} </td>
+							<td>{{pr.direccion_domi}} </td>
+							<td>{{pr.cell}} </td>
+							<td><a href="{% url 'cliente:ListarMascota' pk=pr.id %}">Inforación</a> </td>
+							<td><a href="{% url 'cliente:edit' pr.id %}">Editar</a> </td>
+							<td><a href="{% url 'cliente:delete' pr.id %}" >Borrar</a></td>
+							</tr>
+
+							{% endfor %}
+
+						    </tbody>
+						  </table>
+
+			{% else %}
+
+				<h3 style="color: #757272;">
+					No hay clientes
+				</h3>
+
+			{% endif %}
+	
+
+
+			</div>	
+								
+		</div>
+			  
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        
+       
+      </div>
+      
+    </div>
+  </div>
+
+
+{% endblock content %}

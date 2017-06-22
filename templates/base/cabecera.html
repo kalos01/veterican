@@ -1,0 +1,86 @@
+{% load static %}
+
+
+
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>                        
+		      </button>
+		      <a class="navbar-brand" href="{% url "home" %}">Veterican</a>
+		    </div>
+		    <div class="collapse navbar-collapse" id="myNavbar">
+		    <ul class="nav navbar-nav navbar-right">
+
+	           <li><a href="{% url "empleado:crearEmpleado" %}">REGISTRAR EMPLEDO</a></li> 
+
+	             <li class="dropdown" >
+	         
+	              <a class="dropdown-toggle" data-toggle="dropdown" href="#">MANTENIMIENTO CLIENTE
+	              	<span class="caret"></span>
+	              </a>
+	              
+	              <ul class="dropdown-menu">
+	                
+	                <li><a href="{% url "cliente:PropietarioNuevo" %}">Nuevo Cliente</a></li>
+	                <li><a href="{% url 'cliente:buscar' %}">Buscar Clientes</a></li> 
+	                <li><a href="{% url 'cliente:listadoMascotas' %}">Mascotas Internas</a></li> 
+	              
+	              </ul>
+	         
+	            </li>
+	            
+	            <li class="dropdown" >
+	         
+	              <a class="dropdown-toggle" data-toggle="dropdown" href="#">GENERAR ATENCION
+	              	<span class="caret"></span>
+	              </a>
+
+	              <ul class="dropdown-menu">
+	                
+	                <li><a href="{% url "consulta:CreateConsulta" %}">Generar consulta</a></li>
+	                <li><a href="{% url "boleta:listProBoleta" %}">Genrar Boleta</a></li>
+	              
+	              </ul>
+	         
+	            </li>
+
+	            <!--<li class="dropdown" >
+	         
+	              <a class="dropdown-toggle" data-toggle="dropdown" href="#">ATENCION DE EMERGENCIAS
+	              	<span class="caret"></span>
+	              </a>
+	              
+	              <ul class="dropdown-menu">
+	                
+	                <li><a href="#">Registrar atencion</a></li>
+	                <li><a href="#">Buscar consulta por asistente</a></li>
+	                <li><a href="#">Buscar consulta por cliente</a></li> 
+	              
+	              </ul>
+
+	            </li>-->
+
+	           <li><a href="{% url "CerrarSesion" %}">CERRAR SESSION</a></li> 
+	          
+
+		    </ul>
+		    </div>
+			</div> 
+		</nav>
+			
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+   
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      
+      <div class="item active">
+        <img src="{% static 'images/banner.jpg' %}" alt="veterinaria" width="100%" height="200px">      
+      </div>
+
+    </div>
+</div>
+    

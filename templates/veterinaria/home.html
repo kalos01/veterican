@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+ {% block Title|title %}
+	Home Veterican
+  {% endblock %}
+
+			
+{% block content %}
+
+		<div class="divfuera" align="center">
+
+			<div class="divdentro">
+
+		
+			    <div class="thumbnail" style="width:50%; position: relative; top: 10px;">
+	  				<!--<img src="{% static "images/fondos.jpg" %}" class="img-thumbnail" style="width:50%; height:50%;" > 
+			    -->
+			        
+			        <h3>
+						<br>Bienvendio <v style="color:red;">
+						{{ user.first_name|title  }} {{ user.last_name|title }} (#{{ user.username|title }}) 
+						 </v><br>
+						espero que tengas un buen dia,
+					</h3>
+			        <p>...</p>
+
+			    </div>
+
+			    <div class="att"> <h3> Atte: Veterican. </h3></div>	
+
+			</div>	
+								
+		</div>
+			   
+
+{% endblock content %}

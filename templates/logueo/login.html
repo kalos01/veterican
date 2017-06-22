@@ -1,0 +1,40 @@
+{% extends "logueo.html" %}
+
+{% load static %}
+
+ {% block Title|title %}
+	Login Veterican
+  {% endblock %}
+
+{% block login %}
+
+<div  class="divLogueo"  align="center">
+
+<div class="formLogin">
+
+<form action="." method="post" >
+          {% csrf_token %}
+           <h3>Ingresa a Veterican</h3>
+          {% if mensaje %}
+               <font color="yellow"> {{ mensaje }} 
+               </font> 
+          {% endif %}
+            <input type="hidden" name="action" value="login">
+            
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="username"  name="username" required>
+            </div>
+            <div class="form-group">
+            
+              <input type="password" class="form-control" placeholder="password" name="password" required>
+            </div>      
+            
+            <button type="submit" value="" class="btn btn-lg black p-x-lg">Iniciar ahora</button>
+</form>
+
+</div>
+----------------------
+</div>
+
+{% endblock login %}
+

@@ -1,0 +1,63 @@
+{% extends "blanco.html" %}
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+ {% block Title|title %}
+  Mascota de  Veterican
+  {% endblock %}
+			
+{% block detal %}
+		<!-- Modal content-->
+
+    <div align="center">
+
+      <div >
+      
+      <div style="width:50%; position: relative; top: 10px;" align="center">
+        
+          <h3 class="modal-title">Detalle Mascota</h3>
+
+        <div class="modal-body">
+        
+					  <a href="#" class="list-group-item active">
+            {{mascota.Propietario.nombre|title}} {{mascota.Propietario.ape_pat|title}} {{mascota.Propietario.ape_mat|title}}</a>
+					  
+            <a href="#" class="list-group-item">
+            {{mascota.Propietario.DNI|title}} (DNI)</a>
+					  
+            <a href="#" class="list-group-item">
+            {{mascota.Propietario.direccion_domi|title}}</a>
+					  
+            <a href="#" class="list-group-item">
+            {{mascota.Propietario.cell|title}} (Nur. Celular)</a>
+            
+            <a href="#" class="list-group-item">
+            {{mascota.especie|title}}</a>
+            
+            <a href="#" class="list-group-item">
+            {{mascota.raza|title}}</a>
+            
+            <a href="#" class="list-group-item">
+            {{mascota.nombre|title}}</a>
+
+            <a href="#" class="list-group-item">
+            {{mascota.fech_nacimiento|title}}</a>
+            
+            {% if mascota.estado_interno == True %}
+                 <a href="#" class="list-group-item">
+                 Interno</a>
+              {% else %}
+
+               <a href="#" class="list-group-item">
+                 No Interno</a>
+                
+            {% endif %}
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock detal %}

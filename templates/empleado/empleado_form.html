@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+ {% block Title|title %}
+	Crear empleado Veterican
+  {% endblock %}
+
+			
+{% block content %}
+
+		<div class="divfuera" align="center">
+
+			<div class="divdentro">
+ 			
+ 			<div class="thumbnail" style="width:50%; position: relative; top: 10px;" align="left">
+
+	
+	  		<h3> Crear Empleado </h3>
+			
+			<p><v  style="color:red;">Registra tu empleado:</v></p>
+
+			<br>
+
+			<form method="POST" enctype="multipart/form-data">
+				
+				{% csrf_token %}
+				<h3>Usuario Nuevo:</h3>
+				{{ form.username|as_crispy_field}} 
+				{{ form.password|as_crispy_field}}
+				{{ form.password2|as_crispy_field}}
+				<h3>Datos Personales:</h3>
+				{{ form.DNI|as_crispy_field}}
+				{{ form.first_name|as_crispy_field}}
+				{{ form.last_name|as_crispy_field}}
+				{{ form.email|as_crispy_field}}
+				{{ form.direccion_domi|as_crispy_field}}
+				{{ form.fech_nacimiento|as_crispy_field}}
+				{{ form.cell|as_crispy_field}}
+				{{ form.tipoEmpleado|as_crispy_field}}
+				{{ form.turno|as_crispy_field}}
+             	<div align="right">
+             		<p><button type="submit" class="btn btn-default" >ACETAR</button></p>
+
+             	</div>
+                   {{ form.is_active.as_hidden }}
+                   {{ form.date_joined.as_hidden }}
+			</form>
+			<div align="right">
+			<form action="{% url "home" %}">
+             	<p><button type="submit" class="btn btn-default" >Regresar</button></p>
+			</form>
+			</div>
+
+			</div>	
+								
+		</div>
+			   
+
+{% endblock content %}

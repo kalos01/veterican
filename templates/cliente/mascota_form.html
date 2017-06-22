@@ -1,0 +1,102 @@
+{% extends "blanco.html" %}
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+ {% block Title|title %}
+	Mascota de  Veterican
+  {% endblock %}
+
+			
+{% block content %}
+		{% url 'cliente:MascotaCreation' as m %}
+
+
+		{% if request.get_full_path != m %}
+
+			<header>
+				{% include "base/cabecera.html" %}
+			</header>
+
+		{% endif %}
+
+		<div class="divfuera" align="center">
+
+			<div class="divdentro">
+ 			
+ 			<div class="thumbnail" style="width:50%; position: relative; top: 10px;" align="left">
+
+			{% url "cliente:mascotasEdit"  object.id  as lms %}
+	  		
+			{% url 'cliente:MascotaCreation' as m %}
+
+			{% if  request.get_full_path == m %}
+	
+	  		<h3> Registrar Mascota </h3>
+	  		
+			<p><v  style="color:red;">Registra una Mascota:</v></p>
+			<br>
+			
+			{% else %}
+
+	
+	  		<h3> Actulizar Mascota </h3>
+			
+			<p><v  style="color:red;">Actuliza su información:</v></p>
+
+			<br>
+
+			{% endif %}
+
+
+			<form method="POST" enctype="multipart/form-data" target="_parent">
+				{% csrf_token %}
+				
+				{% if request.get_full_path == lms %}
+					{{ form.estado_interno|as_crispy_field}}
+				{% else %}				
+					{{form|crispy}} 
+				{% endif %}
+           		<div align="right">
+             	<p><button type="submit" class="btn btn-default" >ACETAR</button></p>
+				</div>
+			</form>
+
+			{% if request.get_full_path == m %}
+
+			{% elif request.get_full_path == lms %}
+
+			<div align="right">
+			<form action="{% url "cliente:listadoMascotas" %}">
+             	<p><button type="submit" class="btn btn-default">Volver </button></p>
+			</form>
+			</div>
+
+			{% else %}
+
+			<div align="right">
+			<form action="{% url "cliente:ListarMascota" object.Propietario.id %}">
+             	<p><button type="submit" class="btn btn-default">Volver </button></p>
+			</form>
+			</div>
+
+			{% endif %}
+
+			</div>	
+								
+		</div>
+
+		
+		{% if request.get_full_path != m %}
+
+
+			<footer class="text-center">
+
+				{% include "base/footer.html" %}
+					 	
+			</footer>
+
+		{% endif %}
+			   
+
+{% endblock content %}

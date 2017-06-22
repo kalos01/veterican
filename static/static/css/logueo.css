@@ -1,0 +1,13 @@
+.divLogueo{
+	position: absolute;
+	background-color: white;
+	left: 33%;
+	right: 33%;
+	width: 35%;
+	top: 30%;
+	bottom: 33%;
+
+}
+.formLogin{
+	width: 80%;
+}

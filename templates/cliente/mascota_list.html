@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block Title|title %}
+	Mascota de  Veterican
+{% endblock %}
+
+	
+			
+{% block content %}
+
+
+{% url "cliente:listadoMascotas" as lms %}
+
+{% if not request.get_full_path == lms %}
+	<iframe style="width:100%;height:645px;top:0;border:none;" 
+			src="{% url 'cliente:MascotaCreation' %}" 
+			name="Crear">
+						 	
+	</iframe>
+{% endif %}
+
+	<div class="divfuera" align="center">
+			
+			
+		<div class="divdentro">
+			
+			{% if object_list %}
+
+							
+				<h3> Mascotas de 
+				<v style ="color= red">{{propietario.nombre}} {{propietario.ape_pat}}</v> 
+				</h3>
+				<p><v  style="color:red;">Información:</v>
+				</p>            
+				<table class="table table-striped">
+
+				    <thead>
+				      <tr>
+				        <th>count</th>
+				        <th>Animal</th>
+				        <th>Raza</th>
+				        <th>Nombre</th>
+				        <th>Fecha nacimiento</th>
+				        <th>Propietario</th>
+				        <th>Estado</th>
+				        <th>Actulizar</th>
+				         {% if not request.get_full_path == lms %}
+				       	 <th>Eliminar</th>
+						{% endif %}
+				      </tr>
+				    </thead>
+
+				    <tbody>
+						{%  for mascota in object_list %}
+						<tr>
+						<td valign="bottom"><a href="{% url 'cliente:MascotaDetalle' pk=mascota.id %}" target="holaDetalle" 	onClick="	javascript: visibilidadDiv('holaDetalleContenido');" >{{forloop.counter}}</a></td>
+						<td>{{mascota.especie}} </td>
+						<td>{{mascota.raza}} </td>
+						<td>{{mascota.nombre}} </td>
+						<td>{{mascota.fech_nacimiento}} </td>
+						<td>{{mascota.Propietario.ape_pat}} {{mascota.Propietario.ape_mat}} {{mascota.Propietario}}</td>
+						{% if mascota.estado_interno == True %}
+							
+						<td>Interno </td>
+						{% else %}
+						<td>No Interno </td>
+							
+						{% endif %}
+						{% if  request.get_full_path == lms %}
+							
+						<td><a href="{% url 'cliente:mascotasEdit' mascota.id %}"  target="" >Editar</a> </td>
+						</tr>
+						{% else %}
+						<td><a href="{% url 'cliente:mascotaEdit' mascota.id %}"  target="" >Editar</a> </td>
+						<td><a href="{% url 'cliente:MascotaDel' mascota.id %}" target="" >Borrar</a></td>
+						</tr>
+						{% endif %}
+						{% endfor %}
+				    </tbody>
+
+				</table>
+	
+			{% else %}
+	
+				<h3 style="color: #757272;">
+				<br>
+					<v style="color:red;">"{{ propietario.nombre|title }} - {{ propietario.ape_pat|title }}"</v> No tiene 	mascotas
+				</h3>
+				<br>
+				<br>
+	
+			{% endif %}
+
+			{% if not request.get_full_path == lms %}
+				<h3>
+					<a href="{% url 'cliente:listado' %}" >
+						Volver
+					</a>
+				</h3>
+			{% else %}
+			    <h3>
+					<a href="{% url 'home' %}">
+						Volver
+					</a>
+				</h3>
+
+			{% endif %}
+				
+		              
+		</div>
+		
+		{% if object_list %}
+		<p>
+			<input  type="button" class="btn btn-default" onClick="javascript:AbrirOcultarDiv('holaDetalleContenido');" 
+					value="Ver/Ocultar">
+
+			<div id="holaDetalleContenido" hidden>
+
+			<iframe style="width:100%;height:555px;top:0;border:none;position:relative;" 
+					name="holaDetalle"></iframe>
+		
+		</div>
+		</p>
+		{% endif %}
+
+	</div>
+
+{% endblock content %}

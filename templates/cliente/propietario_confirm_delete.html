@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+ {% block Title|title %}
+	Propietario Veterican
+  {% endblock %}
+
+			
+{% block content %}
+
+		<div class="divfuera" align="center">
+
+			<div class="divdentro">
+
+		
+		
+			    <div class="thumbnail" style="width:50%; position: relative; top: 10px;">
+								    
+					<form method="post">{% csrf_token %}
+					    <br>
+					    <br>
+					   <h3><v style="color:red;"> #{{ user.username|title }} </v>
+					   estás seguro que deseas borrar eliminar a 
+					   <v style="color:red;">"{{ object.nombre|title }} - {{ object.ape_pat|title }}"</v>? 
+					   </h3>
+					    <br>
+            			<button type="submit" value="" class="btn btn-lg black p-x-lg">Eliminar</button>
+					</form>
+					<div align="center">
+					<form action="{% url "cliente:listado" %}">
+		             	<p><button type="submit" class="btn btn-default" >Atras</button></p>
+					</form>
+					</div>
+
+
+				</div>
+	
+			</div>	
+								
+		</div>
+			   
+
+{% endblock content %}

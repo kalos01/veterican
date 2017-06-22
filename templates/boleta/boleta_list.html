@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+ {% block Title|title %}
+	Propietario Veterican
+  {% endblock %}
+
+
+{% block content %}
+
+		<div class="divfuera" align="center">
+
+			<div class="divdentro">
+
+			{% if object_list %}
+
+						  <h3>  Listado de clientes </h3>
+						  <p><v  style="color:red;">Información relevante de Clientes:</v></p>            
+						  <table class="table table-striped">
+						    <thead>
+						      <tr>
+						        <th>count</th>
+						        <th>nombre</th>
+						        <th>apellidos</th>
+						        <th>DNI</th>
+						        <th>direccion</th>
+						        <th>cell</th>
+						        <th>Generar Boleta</th>
+						      </tr>
+						    </thead>
+
+						    <tbody>
+							{%  for pr in object_list %}
+
+							<tr>
+							<td valign="bottom"><a href="{% url 'cliente:PropietarioDetalle' pr.id %}" data-toggle="modal" data-target="#myModal">{{forloop.counter}}</a></td>
+							<td>{{pr.nombre}} </td>
+							<td>{{pr.ape_pat}} - {{pr.ape_mat}} </td>
+							<td>{{pr.DNI}} </td>
+							<td>{{pr.direccion_domi}} </td>
+							<td>{{pr.cell}} </td>
+							<td><a href="{% url 'boleta:CrearBoleta' pk=pr.id %}">Generar Boleta</a>
+							</tr>
+
+							{% endfor %}
+
+						    </tbody>
+						  </table>
+
+			{% else %}
+
+				<h3 style="color: #757272;">
+					No hay clientes
+				</h3>
+
+			{% endif %}
+	
+
+
+			</div>	
+								
+		</div>
+			  
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        
+       
+      </div>
+      
+    </div>
+  </div>
+
+
+{% endblock content %}
